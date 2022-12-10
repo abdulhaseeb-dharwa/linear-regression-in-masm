@@ -1,0 +1,42 @@
+;y-ymean
+        mov ebx,TYPE deathsx
+        mov ecx,LEnGTHOF deathsx
+        mov esi,0
+
+        fldz
+        fld meanX
+        SX:
+        fild deathsx[esi]
+        fsub st,st(1)
+        faddp st(2),st
+        add esi,4
+        LOOP SX
+
+        fstp xsub
+        call ShowFPUStack
+        fstp xsub
+        call ShowFPUStack
+
+        fld xsub
+        call writefloat
+
+
+        ;x-xmean
+        mov ebx,TYPE yearsx
+        mov ecx,lENGTHOF yearsx
+        mov esi,0
+        finit
+        fldz
+        fld meanX
+        SY:
+        fild yearsx[esi]
+        fsub st,st(1)
+        faddp st(2),st
+        add esi,ebx
+        LOOP SY
+
+        fstp meanX
+        fstp ysub
+
+        fld xsub
+        call writefloat
